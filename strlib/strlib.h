@@ -1,11 +1,6 @@
 #ifndef STRINGIMP_STRLIB_H
 #define STRINGIMP_STRLIB_H
 
-/*
- * ToDo:
- * - Dynamic Memory Allocation
- */
-
 // Dependencies
 
 #include <math.h>                   // pow, ceil
@@ -290,36 +285,28 @@ float StrCompare(str a, str b){
  * @return ... Modified version of the base string
  */
 str StrReplaceFirst(str base, str what, str with){
-    int baseLen = StrLength(base);
-    int withLen = StrLength(with);
-    int whatLen = StrLength(what);
-    str newStr = (str) calloc(baseLen, 1);
-    for (int i = 0; i < baseLen; i++){
-        newStr[i] = base[i];
+    str newBase = (str) calloc(StrLength(base)+1, 1);
+    strcpy(newBase, base);
+    str newWith = (str) calloc(StrLength(with)+1, 1);
+    strcpy(newWith, with);
+
+    int *idxs = StrSearchFirst(base, what);
+    int start = idxs[0];
+    int end = idxs[1];
+    if (idxs[0]  < 0){
+        return base;
     }
-    newStr[baseLen] = 0;
-    int newIdx = 0;
-    int withIdx = 0;
-    int *idxs_r = StrSearchFirst(base, what);
-    int idxs[] = {idxs_r[0], idxs_r[1]};
-    if (idxs[0] < 0){
-        return "";
+    str newStr = (str) calloc(StrLength(base) + StrLength(with) - StrLength(what) + 1, 1);
+    int idx = 0;
+    for (int i = 0; i < start; i++){
+        newStr[idx] = newBase[i];
+        idx++;
     }
-    for (int j = idxs[0]; j <= idxs[1]; j++){
-        if (with[withIdx] == 0){
-            ;
-        }
-        else{
-            newStr[j] = with[withIdx];
-            withIdx++;
-        }
-    }
-    if (withLen < whatLen) {
-        if (withLen == 1) {
-            newStr[idxs[1] - withLen] = 0;
-        } else {
-            newStr[idxs[1]] = 0;
-        }
+    newStr = StrMerge(newStr, newWith);
+    idx += StrLength(with);
+    for (int i = end+1; i < StrLength(base); i++){
+        newStr[idx] = newBase[i];
+        idx++;
     }
     return newStr;
 }

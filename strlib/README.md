@@ -14,6 +14,10 @@ This library adds a string datatype called ```str```, this type is compatible wi
 Be aware, that while a function of this library is being executed, 1 - 3 MB of RAM are occupied, due to the max string length being very high (10^6 characters * 1 Byte pre character = 1MB).
 
 
+# Extensions
+Disclaimer: All extensions of Strlib are independent of strlib.h, but strlib is compatible with its extensions (obviously) and vice versa!
+- strcolor.h: colored string printing
+- strlist.h: string linked list implementation
 
 
 # Include the library
@@ -201,7 +205,7 @@ Be aware, that while a function of this library is being executed, 1 - 3 MB of R
 	accept whitespaces as input (which ```scanf``` can't).
 	```message``` defines the text for the input prompt.
 	
-- ``int IsNumeric(str a)```:
+- ```int IsNumeric(str a)```:
 	
 	Checks whether ```a``` only contains the characters 0-9 or not
 
