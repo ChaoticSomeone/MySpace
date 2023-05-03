@@ -247,12 +247,12 @@ void StrListInit(str_llist *a, char *texts, ...){
  * @param a ... llist to merge
  * @return merged content of 'a'
  */
-str StrListMergeContent(str_llist *a){
+char *StrListMergeContent(str_llist *a){
     node *ptr = a -> header;
     char *newStr = (char *) calloc(1,1);
     while (ptr != NULL){
         newStr = realloc(newStr, strlen(newStr) + strlen(ptr -> content) + 1);
-        newStr = StrMerge(newStr, ptr -> content);
+        strncat(newStr, ptr -> content, strlen(ptr -> content));
         ptr = ptr -> next;
     }
     return newStr;
@@ -269,7 +269,7 @@ int StrListIndexOf(str_llist *a, char *text){
     int idx = -1;
     while (1){
         idx++;
-        if (StrMatch(text, ptr -> content)){
+        if (strcmp(text, ptr -> content) == 0){
             break;
         }
         if (ptr -> next == NULL){
