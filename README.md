@@ -5,4 +5,4 @@
 
 - ```Strlib```: <br>
 	String implementation for C (C11) with (mostly) dynamic memory managment. Also contains extensions for colored string printitng and
-	string linked lists (last of which is WIP)
+	string linked lists
