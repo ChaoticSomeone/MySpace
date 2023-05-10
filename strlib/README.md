@@ -162,11 +162,6 @@ Disclaimer: All extensions of Strlib are independent of strlib.h, but strlib is 
 	Occupies 128 bytes (by default) IF this function is called.
 
 
-- ```str StrOptimizeSize(str a)```:
-	
-	Minimizes the memory occupied by ```a```, removes unneccassary NUL characters from it (as of rn, this function is rather redundant)
-
-
 - ```str StrZip(str a, str b, int interval)```:
 	
 	Merges ```a``` and ```b```, but unlike ```StrMerge``` the 2 strings are combined using the principle of a ziplock.
