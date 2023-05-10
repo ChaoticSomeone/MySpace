@@ -804,7 +804,7 @@ int IsAlphabetic(str a){
  */
 int IsAlphaNumeric(str a){
     for (int i = 0; i < StrLength(a); i++){
-        if (!(a[i] >= 65 && a[i] <= 90 || a[i] >= 97 && a[i] <= 122 || a[i] >= 48 && a[i] <= 90 || a[i] <= 32)){
+        if ((a[i] < 'A' || a[i] > 'Z') && (a[i] < 'a' || a[i] > 'z') && (a[i] < '0' || a[i] > '9')){
             return 0;
         }
     }
@@ -845,7 +845,10 @@ int IsWhitespace(str a){
  * @return Integer value to represent a boolean if 'a' is uppercased
  */
 int IsUpper(str a){
-    return StrMatch(a, ToUpper(a)) && !(IsNumeric(a) || IsSymbolic(a));
+    for (int i = 0; i < StrLength(a); i++){
+        if (a[i] < 'A' || a[i] > 'Z'){return 0;}
+    }
+    return 1;
 }
 
 /**
@@ -854,7 +857,10 @@ int IsUpper(str a){
  * @return Integer value to represent a boolean if 'a' is lowercased
  */
 int IsLower(str a){
-    return StrMatch(a, ToLower(a)) && !(IsNumeric(a) || IsSymbolic(a));
+    for (int i = 0; i < StrLength(a); i++){
+        if (a[i] < 'a' || a[i] > 'z'){return 0;}
+    }
+    return 1;
 }
 
 /**
