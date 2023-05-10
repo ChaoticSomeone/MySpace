@@ -228,7 +228,7 @@ Disclaimer: All extensions of Strlib are independent of strlib.h, but strlib is 
 
 	Checks whether all letters in ```a``` are lowercase
 	
-- ```int IsUpper(str a)```:
+- ```int IsTitle(str a)```:
 
 	Checks if ```a``` follows strlib's title decribtion
 
