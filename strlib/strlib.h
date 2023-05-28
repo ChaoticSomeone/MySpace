@@ -1021,16 +1021,17 @@ int Bin2Dec(str bin, int signMode){
     int i = 0;
     int dec = 0;
     str revBin = StrReverse(bin);
-    for (; i < StrLength(bin); i++){
+    int revBinLength = StrLength(revBin); //store the length of the reversed string
+    for (; i < revBinLength; i++){        //corrected loop condition to use revBinLength
         int val = revBin[i] == '0' ? 0 : 1;
         dec += pow(2, i) * val;
     }
-    if (signMode == SIGNMODE_SBIT && revBin[i-1] == '1'){
-        dec -= pow(2, i-1);
+    if (signMode == SIGNMODE_SBIT && revBin[revBinLength-1] == '1'){ //corrected the index to access the last bit
+        dec -= pow(2, revBinLength-1);
         dec *= -1;
     }
-    else if (signMode == SIGNMODE_S2C && revBin[i-1] == '1'){
-        dec -= pow(2, i);
+    else if (signMode == SIGNMODE_S2C && revBin[revBinLength-1] == '1'){ //corrected index to access the last bin
+        dec -= pow(2, revBinLength);
     }
     return dec;
 }
