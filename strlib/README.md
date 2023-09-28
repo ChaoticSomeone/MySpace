@@ -1,5 +1,5 @@
 # Strlib
-String Implmenetation for C11
+String Implmenetation for C11 (works like a charm without any bugs whatsoever, no warranty)
 
 Just so you know, this library is pronounced as s-t-r-lib (or alternativly string-lib) not str-lib. 
 
